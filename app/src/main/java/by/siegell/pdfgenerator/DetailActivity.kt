@@ -2,42 +2,33 @@ package by.siegell.pdfgenerator
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import by.siegell.pdfgenerator.databinding.ActivityDetailBinding
 
 private const val DOCUMENT_DATA = "DOCUMENT_DATA"
 
 class DetailActivity : AppCompatActivity() {
 
-    private lateinit var detailsData: LoanAgreementData
+    private lateinit var binding: ActivityDetailBinding
 
-    private lateinit var numberView: TextView
-    private lateinit var dateRuView: TextView
-    private lateinit var dateEnView: TextView
-    private lateinit var generateButtonView: Button
+    private lateinit var detailsData: LoanAgreementData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val data = intent.getSerializableExtra(DOCUMENT_DATA) as? LoanAgreementData
-        data?.let { detailsData = it } ?: finish()
+        (intent.getSerializableExtra(DOCUMENT_DATA) as? LoanAgreementData)
+            ?.let { detailsData = it } ?: finish()
 
-        numberView = findViewById(R.id.number)
-        dateRuView = findViewById(R.id.date_ru)
-        dateEnView = findViewById(R.id.date_en)
-        generateButtonView = findViewById(R.id.generate)
-
-        with(detailsData) {
-            numberView.text = "Number: $number"
-            dateRuView.text = dateRu
-            dateEnView.text = dateEn
+        with(binding) {
+            dateRu.text = detailsData.dateRu
+            dateEn.text = detailsData.dateEn
         }
 
-        generateButtonView.setOnClickListener {
+        binding.generate.setOnClickListener {
             Toast.makeText(this, "Generate!", Toast.LENGTH_SHORT).show()
         }
     }
