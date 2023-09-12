@@ -15,10 +15,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loanAgreementButton.setOnClickListener {
-            openDetailActivity(
-                testDataFactory.getTestLoanAgreementData()
-            )
+        val adapter = DocumentTypeAdapter()
+        adapter.onClick = { docType ->
+            resolveDocumentType(docType)
+        }
+        binding.recycler.adapter = adapter
+
+        adapter.submitList(testDataFactory.getTestDocumentTypes())
+    }
+
+    private fun resolveDocumentType(documentTypeData: DocumentTypeData) {
+        // TODO нарушение Принципа подстановки Лисков
+        when (documentTypeData.type) {
+            Type.LOAN_AGREEMENT -> openDetailActivity(documentTypeData as LoanAgreementData)
         }
     }
 
