@@ -2,7 +2,16 @@ package by.siegell.pdfgenerator
 
 import java.io.Serializable
 
-class LoanAgreementData(
+enum class Type {
+    LOAN_AGREEMENT
+}
+
+interface DocumentTypeData {
+    val type: Type
+}
+
+data class LoanAgreementData(
+    override val type: Type,
     val number: Int,
     val dateRu: String,
     val dateEn: String,
@@ -12,4 +21,4 @@ class LoanAgreementData(
     val termEn: String,
     val provideRu: String,
     val provideEn: String
-) : Serializable
+) : Serializable, DocumentTypeData
