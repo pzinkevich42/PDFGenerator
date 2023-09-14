@@ -1,9 +1,14 @@
-package by.siegell.pdfgenerator
+package by.siegell.pdfgenerator.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import by.siegell.pdfgenerator.databinding.ActivityMainBinding
+import by.siegell.pdfgenerator.domain.entity.DocumentTypeData
+import by.siegell.pdfgenerator.domain.entity.Type
+import by.siegell.pdfgenerator.presentation.LoanAgreementData
+import by.siegell.pdfgenerator.presentation.detail.DetailActivity
+import by.siegell.pdfgenerator.presentation.main.rv.DocumentTypeAdapter
 
 class MainActivity : ComponentActivity() {
 

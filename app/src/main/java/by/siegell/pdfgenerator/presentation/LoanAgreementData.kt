@@ -1,14 +1,8 @@
-package by.siegell.pdfgenerator
+package by.siegell.pdfgenerator.presentation
 
+import by.siegell.pdfgenerator.domain.entity.DocumentTypeData
+import by.siegell.pdfgenerator.domain.entity.Type
 import java.io.Serializable
-
-enum class Type {
-    LOAN_AGREEMENT
-}
-
-interface DocumentTypeData {
-    val type: Type
-}
 
 data class LoanAgreementData(
     override val type: Type,
