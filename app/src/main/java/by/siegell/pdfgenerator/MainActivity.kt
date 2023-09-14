@@ -1,12 +1,13 @@
 package by.siegell.pdfgenerator
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import by.siegell.pdfgenerator.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
-    private val testDataFactory = TestDataFactory()
+    private val viewModel: MainActivityViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -21,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.recycler.adapter = adapter
 
-        adapter.submitList(testDataFactory.getTestDocumentTypes())
+        viewModel.documentList.observe(this) {
+            adapter.submitList(it)
+        }
+        viewModel.loadDocumentList()
     }
 
     private fun resolveDocumentType(documentTypeData: DocumentTypeData) {
