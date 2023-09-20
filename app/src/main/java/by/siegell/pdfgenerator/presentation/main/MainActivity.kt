@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import by.siegell.pdfgenerator.R
 import by.siegell.pdfgenerator.databinding.ActivityMainBinding
 import by.siegell.pdfgenerator.presentation.LoanAgreementData
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, DocumentDetailFragment.newInstance(loanAgreementData))
+            .setTransition(TRANSIT_FRAGMENT_OPEN)
             .addToBackStack(DocumentDetailFragment.TAG)
             .commit()
     }
