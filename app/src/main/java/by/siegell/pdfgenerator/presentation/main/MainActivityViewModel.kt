@@ -3,23 +3,14 @@ package by.siegell.pdfgenerator.presentation.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import by.siegell.pdfgenerator.di.ManualDIFactory
-import by.siegell.pdfgenerator.presentation.DocumentTypePresentationData
-import by.siegell.pdfgenerator.presentation.PresentationMapper
+import by.siegell.pdfgenerator.presentation.LoanAgreementData
 
-class MainActivityViewModel: ViewModel() {
+class MainActivityViewModel : ViewModel() {
 
-    private val interactor = ManualDIFactory.createInteractor()
-    private val mapper = PresentationMapper()
+    private val _openDocumentEvent = MutableLiveData<LoanAgreementData>()
+    val openDocumentEvent: LiveData<LoanAgreementData> = _openDocumentEvent
 
-    private val _documentList = MutableLiveData<List<DocumentTypePresentationData>>(emptyList())
-    val documentList: LiveData<List<DocumentTypePresentationData>> = _documentList
-
-    fun loadDocumentList() {
-        _documentList.postValue(
-            interactor.getDocumentData().map {
-                mapper.toDocumentTypePresentationData(it)
-            }
-        )
+    fun openDocument(data: LoanAgreementData) {
+        _openDocumentEvent.postValue(data)
     }
 }

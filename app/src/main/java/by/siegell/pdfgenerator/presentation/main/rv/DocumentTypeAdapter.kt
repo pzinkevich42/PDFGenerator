@@ -5,16 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import by.siegell.pdfgenerator.databinding.ListItemButtonBinding
-import by.siegell.pdfgenerator.domain.entity.DocumentTypeData
-import by.siegell.pdfgenerator.presentation.DocumentTypePresentationData
-import by.siegell.pdfgenerator.presentation.DocumentTypePresentationDataDiffCallback
+import by.siegell.pdfgenerator.presentation.LoanAgreementData
 
 class DocumentTypeAdapter :
-    ListAdapter<DocumentTypePresentationData, ButtonViewHolder>(
-        DocumentTypePresentationDataDiffCallback
+    ListAdapter<LoanAgreementData, ButtonViewHolder>(
+        LoanAgreementDiffCallback
     ) {
 
-    var onClick: ((DocumentTypeData) -> Unit) = {}
+    var onClick: ((LoanAgreementData) -> Unit) = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonViewHolder {
         return ButtonViewHolder(
@@ -29,9 +27,9 @@ class DocumentTypeAdapter :
     override fun onBindViewHolder(holder: ButtonViewHolder, position: Int) {
         val item = getItem(position)
         with(holder.binding.listItemButton) {
-            text = item.typeName
+            text = "Document №${item.number}"
             setOnClickListener {
-                onClick(item.payload)
+                onClick(item)
             }
         }
     }

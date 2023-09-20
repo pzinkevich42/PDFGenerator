@@ -1,16 +1,15 @@
 package by.siegell.pdfgenerator.presentation.main
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.activity.addCallback
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import by.siegell.pdfgenerator.R
 import by.siegell.pdfgenerator.databinding.ActivityMainBinding
-import by.siegell.pdfgenerator.domain.entity.DocumentTypeData
-import by.siegell.pdfgenerator.domain.entity.Type
 import by.siegell.pdfgenerator.presentation.LoanAgreementData
-import by.siegell.pdfgenerator.presentation.detail.DetailActivity
-import by.siegell.pdfgenerator.presentation.main.rv.DocumentTypeAdapter
+import by.siegell.pdfgenerator.presentation.detail.DocumentDetailFragment
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels()
 
@@ -21,28 +20,25 @@ class MainActivity : ComponentActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = DocumentTypeAdapter()
-        adapter.onClick = { docType ->
-            resolveDocumentType(docType)
+        viewModel.openDocumentEvent.observe(this) {
+            openDetailFragment(it)
         }
-        binding.recycler.adapter = adapter
 
-        viewModel.documentList.observe(this) {
-            adapter.submitList(it)
+        onBackPressedDispatcher.addCallback {
+            supportFragmentManager.popBackStack()
         }
-        viewModel.loadDocumentList()
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, DocumentListFragment.newInstance())
+            .commit()
     }
 
-    private fun resolveDocumentType(documentTypeData: DocumentTypeData) {
-        // TODO нарушение Принципа подстановки Лисков
-        when (documentTypeData.type) {
-            Type.LOAN_AGREEMENT -> openDetailActivity(documentTypeData as LoanAgreementData)
-        }
-    }
-
-    private fun openDetailActivity(loanAgreementData: LoanAgreementData) {
-        startActivity(
-            DetailActivity.createIntent(this, loanAgreementData)
-        )
+    private fun openDetailFragment(loanAgreementData: LoanAgreementData) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, DocumentDetailFragment.newInstance(loanAgreementData))
+            .addToBackStack(DocumentDetailFragment.TAG)
+            .commit()
     }
 }

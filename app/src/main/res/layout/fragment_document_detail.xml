@@ -4,50 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.detail.DetailActivity"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="24dp">
+    android:paddingVertical="24dp"
+    tools:context=".presentation.detail.DocumentDetailFragment">
 
 
     <TextView
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Number: 5"
-        android:textSize="24sp"
-        />
+        tools:text="Number: 5" />
 
     <TextView
         android:id="@+id/date_ru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text = "Date (ru): 12.34.5678"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/number"
         android:layout_marginTop="16dp"
         android:textSize="18sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/number"
+        tools:text="Date (ru): 12.34.5678" />
 
     <TextView
         android:id="@+id/date_en"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text = "Date (en): 12.34.5678"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/number"
         android:layout_marginTop="16dp"
         android:textSize="18sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/number"
+        tools:text="Date (en): 12.34.5678" />
 
     <Button
         android:id="@+id/generate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="Generate"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Generate"/>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

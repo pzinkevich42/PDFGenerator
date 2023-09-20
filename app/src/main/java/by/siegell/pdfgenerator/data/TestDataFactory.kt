@@ -2,14 +2,12 @@ package by.siegell.pdfgenerator.data
 
 import by.siegell.pdfgenerator.domain.DocumentRepository
 import by.siegell.pdfgenerator.domain.entity.DocumentEntity
-import by.siegell.pdfgenerator.domain.entity.Type
 
 class TestDataFactory : DocumentRepository {
 
     override fun getDocumentEntity(): List<DocumentEntity> {
         return listOf(
             DocumentEntity(
-                type = Type.LOAN_AGREEMENT,
                 number = 5,
                 dateRu = "12.04.5678",
                 dateEn = "<<12>>th April 5678",
