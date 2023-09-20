@@ -1,4 +1,4 @@
-package by.siegell.pdfgenerator
+package by.siegell.pdfgenerator.presentation.detail
 
 import android.content.Context
 import android.content.Intent
@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import by.siegell.pdfgenerator.databinding.ActivityDetailBinding
-
-private const val DOCUMENT_DATA = "DOCUMENT_DATA"
+import by.siegell.pdfgenerator.presentation.LoanAgreementData
 
 class DetailActivity : AppCompatActivity() {
 
@@ -34,6 +33,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object {
+
+        private const val DOCUMENT_DATA = "DOCUMENT_DATA"
 
         fun createIntent(context: Context, loanAgreementData: LoanAgreementData): Intent {
             return Intent(
