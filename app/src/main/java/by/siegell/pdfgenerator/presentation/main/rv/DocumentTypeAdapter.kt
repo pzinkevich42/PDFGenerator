@@ -1,12 +1,15 @@
-package by.siegell.pdfgenerator
+package by.siegell.pdfgenerator.presentation.main.rv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import by.siegell.pdfgenerator.databinding.ListItemButtonBinding
+import by.siegell.pdfgenerator.domain.entity.DocumentTypeData
+import by.siegell.pdfgenerator.presentation.DocumentTypePresentationData
+import by.siegell.pdfgenerator.presentation.DocumentTypePresentationDataDiffCallback
 
-class DocumentTypeAdapter() :
+class DocumentTypeAdapter :
     ListAdapter<DocumentTypePresentationData, ButtonViewHolder>(
         DocumentTypePresentationDataDiffCallback
     ) {

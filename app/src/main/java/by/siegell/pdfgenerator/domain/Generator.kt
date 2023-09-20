@@ -1,5 +1,6 @@
-package by.siegell.pdfgenerator
+package by.siegell.pdfgenerator.domain
 
+import by.siegell.pdfgenerator.presentation.LoanAgreementData
 import com.itextpdf.text.Document
 import com.itextpdf.text.Element
 import com.itextpdf.text.Font
