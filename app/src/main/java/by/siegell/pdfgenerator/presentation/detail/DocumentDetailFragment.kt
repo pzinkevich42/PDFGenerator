@@ -47,9 +47,11 @@ class DocumentDetailFragment : Fragment() {
         private const val DOCUMENT_DATA_ARGUMENT = "DOCUMENT_DATA_ARGUMENT"
 
         fun newInstance(data: LoanAgreementData) = DocumentDetailFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(DOCUMENT_DATA_ARGUMENT, data)
-            }
+            arguments = getBundle(data)
+        }
+
+        fun getBundle(data: LoanAgreementData) = Bundle().apply {
+            putSerializable(DOCUMENT_DATA_ARGUMENT, data)
         }
     }
 }

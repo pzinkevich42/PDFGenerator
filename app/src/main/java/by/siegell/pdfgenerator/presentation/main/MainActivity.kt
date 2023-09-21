@@ -1,10 +1,9 @@
 package by.siegell.pdfgenerator.presentation.main
 
 import android.os.Bundle
-import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
+import androidx.navigation.findNavController
 import by.siegell.pdfgenerator.R
 import by.siegell.pdfgenerator.databinding.ActivityMainBinding
 import by.siegell.pdfgenerator.presentation.LoanAgreementData
@@ -24,23 +23,15 @@ class MainActivity : AppCompatActivity() {
         viewModel.openDocumentEvent.observe(this) {
             openDetailFragment(it)
         }
-
-        onBackPressedDispatcher.addCallback {
-            supportFragmentManager.popBackStack()
-        }
-
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_container, DocumentListFragment.newInstance())
-            .commit()
     }
 
     private fun openDetailFragment(loanAgreementData: LoanAgreementData) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, DocumentDetailFragment.newInstance(loanAgreementData))
-            .setTransition(TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack(DocumentDetailFragment.TAG)
-            .commit()
+        binding
+            .fragmentContainer
+            .findNavController()
+            .navigate(
+                resId = R.id.action_documentListFragment_to_documentDetailFragment,
+                args = DocumentDetailFragment.getBundle(loanAgreementData)
+            )
     }
 }
