@@ -4,10 +4,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import by.siegell.pdfgenerator.R
 import by.siegell.pdfgenerator.databinding.ActivityMainBinding
 import by.siegell.pdfgenerator.presentation.LoanAgreementData
-import by.siegell.pdfgenerator.presentation.detail.DocumentDetailFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,12 +24,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDetailFragment(loanAgreementData: LoanAgreementData) {
+
         binding
             .fragmentContainer
             .findNavController()
             .navigate(
-                resId = R.id.action_documentListFragment_to_documentDetailFragment,
-                args = DocumentDetailFragment.getBundle(loanAgreementData)
+                DocumentListFragmentDirections.actionDocumentListFragmentToDocumentDetailFragment(
+                    loanAgreementData
+                )
             )
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import by.siegell.pdfgenerator.databinding.FragmentDocumentDetailBinding
 import by.siegell.pdfgenerator.presentation.LoanAgreementData
 
@@ -15,11 +16,12 @@ class DocumentDetailFragment : Fragment() {
     private lateinit var binding: FragmentDocumentDetailBinding
     private val viewModel: DocumentDetailViewModel by viewModels()
 
+    private val args: DocumentDetailFragmentArgs by navArgs()
     private lateinit var data: LoanAgreementData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        data = requireArguments().getSerializable(DOCUMENT_DATA_ARGUMENT) as LoanAgreementData
+        data = args.documentData
     }
 
     override fun onCreateView(
@@ -39,19 +41,5 @@ class DocumentDetailFragment : Fragment() {
             Toast.makeText(requireContext(), "Generate!", Toast.LENGTH_SHORT).show()
         }
 
-    }
-
-    companion object {
-
-        const val TAG = "DocumentDetailFragment"
-        private const val DOCUMENT_DATA_ARGUMENT = "DOCUMENT_DATA_ARGUMENT"
-
-        fun newInstance(data: LoanAgreementData) = DocumentDetailFragment().apply {
-            arguments = getBundle(data)
-        }
-
-        fun getBundle(data: LoanAgreementData) = Bundle().apply {
-            putSerializable(DOCUMENT_DATA_ARGUMENT, data)
-        }
     }
 }
