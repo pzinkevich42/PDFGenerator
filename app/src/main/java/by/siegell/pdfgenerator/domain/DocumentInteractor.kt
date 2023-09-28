@@ -1,8 +1,10 @@
 package by.siegell.pdfgenerator.domain
 
 import by.siegell.pdfgenerator.domain.entity.DocumentEntity
+import javax.inject.Inject
 
-class DocumentInteractor(
+class DocumentInteractor
+@Inject constructor(
     private val repository: DocumentRepository
 ) {
 

@@ -2,8 +2,10 @@ package by.siegell.pdfgenerator.data
 
 import by.siegell.pdfgenerator.domain.DocumentRepository
 import by.siegell.pdfgenerator.domain.entity.DocumentEntity
+import javax.inject.Inject
 
-class TestDataFactory : DocumentRepository {
+class TestDataFactory
+@Inject constructor() : DocumentRepository {
 
     override fun getDocumentEntity(): List<DocumentEntity> {
         return listOf(
